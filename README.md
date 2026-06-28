@@ -20,17 +20,8 @@ A motion led portfolio that turns ideas into products you remember long after th
 * **Focus Tab** &middot; a calm, intentional new tab built for people who want to get things done
 * **CR Financial** &middot; a client website crafted around trust, clarity and real conversions
 
-## 🛠 Built with
+-----------
 
-Plain HTML, CSS and JavaScript. That is the whole stack. Speed by subtraction.
-
-## ⚡ Run it locally
-
-```bash
-npm run dev
-```
-
-Then open `http://localhost:4173` and look around.
 
 ## 🎨 Make it yours
 
