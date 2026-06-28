@@ -1,44 +1,61 @@
-# Manrai Singh Portfolio
+# Manrai Singh · Portfolio
 
-Personal portfolio website showcasing AI products, Chrome extensions, iOS apps, startup projects, and freelance work.
+> The internet has enough beige. This one has a pulse.
 
-## Featured Projects
+A motion led portfolio that turns ideas into products you remember long after the tab closes. Handcrafted with semantic HTML, modern CSS and a sprinkle of vanilla JavaScript. No frameworks. No build step. No bloat. Just fast, smooth and intentional.
 
-### Ziggy For Two
+## ✨ Highlights
 
-An iOS relationship app where couples raise a shared digital pet together through widgets, mini-games, instant snaps, and daily interactions.
+* A custom cursor that follows you and pulls you into every project
+* A floating "view website" circle that rides over each project image and links straight to the live build
+* A frosted glass popup for the projects that are still cooking
+* Buttery scroll reveals, magnetic buttons and a living 3D hero scene
+* Reduced motion support and full keyboard navigation baked in
+* One accent variable that repaints the entire site in a single line
 
-### Ziggy AI
+## 🧠 The work
 
-A context-aware Chrome extension companion that lives on your browser, understands what you're viewing, answers questions, summarizes content, and helps find better deals online.
+* **Ziggy For Two** &middot; an iOS companion that couples raise together, one little moment at a time
+* **Ziggy AI** &middot; a browser sidekick that actually understands what you are looking at
+* **Focus Tab** &middot; a calm, intentional new tab built for people who want to get things done
+* **CR Financial** &middot; a client website crafted around trust, clarity and real conversions
 
-### Focus Tab
+## 🛠 Built with
 
-A productivity-focused new tab experience featuring task management, Pomodoro timers, ambient sounds, weather updates, quotes, and focus tracking.
+Plain HTML, CSS and JavaScript. That is the whole stack. Speed by subtraction.
 
-### CR Financial Advisors
+## ⚡ Run it locally
 
-A professional finance and taxation advisory website developed for a real client.
+```bash
+npm run dev
+```
 
+Then open `http://localhost:4173` and look around.
 
+## 🎨 Make it yours
 
-## About Me
+* Projects live in the `portfolio.projects` array inside `assets/js/app.js`
+* Swap the email and social links in `index.html`
+* Change `--accent` at the top of `assets/css/styles.css` to recolor everything at once
 
-I'm Manrai Singh, a Computer Science student and builder passionate about turning ideas into real products. My interests lie at the intersection of software, design, AI, productivity, and startups.
-
-## Live Website
-
-Coming Soon
-
-## Repository Structure
+## 📂 Structure
 
 ```text
-assets/
-├── css/
-├── images/
-└── js/
-
-index.html
-README.md
-package.json
+portfolio/
+  assets/
+    css/   styles.css
+    js/    app.js
+    images/
+  index.html
+  package.json
 ```
+
+## 👋 Say hello
+
+Built by Manrai Singh, a Computer Science student who loves taking ideas from a blank file to something people genuinely enjoy using.
+
+* Email: [smanraisingh@gmail.com](mailto:smanraisingh@gmail.com)
+* [X](https://x.com/ManraiSingh)
+* [LinkedIn](https://www.linkedin.com/in/manrai-singh/)
+
+Now go build something with a pulse.
