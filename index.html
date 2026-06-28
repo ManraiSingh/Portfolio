@@ -158,6 +158,27 @@ build products that people genuinely enjoy using.</p>
       <div class="modal__content"></div>
     </dialog>
 
+    <dialog class="wip-modal" id="wip-modal">
+      <div class="wip__card">
+        <div class="wip__bar">
+          <span></span><span></span><span></span>
+          <i class="wip__file">project.swift</i>
+        </div>
+        <pre class="wip__code"><code><span class="c">// status: still cooking 👨‍💻</span>
+<span class="k">while</span> (!shipped) {
+  <span class="v">build</span>();
+  <span class="v">refactor</span>();
+  <span class="v">drinkCoffee</span>(<span class="n">∞</span>);
+}</code></pre>
+        <div class="wip__body">
+          <p class="wip__tag">Work in progress</p>
+          <h3><span class="wip__name">This project</span> is still being built.</h3>
+          <p class="wip__sub">I'm busy crafting this one pixel by pixel. Check back soon, it'll be worth the wait.</p>
+        </div>
+        <button class="wip__close magnetic">Got it ↗</button>
+      </div>
+    </dialog>
+
     <script src="./assets/js/app.js"></script>
   </body>
 </html>

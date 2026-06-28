@@ -7,7 +7,9 @@ year: "2026",
 type: "iOS Startup",
 blurb: "A shared digital pet and widget designed to help couples stay connected through everyday interactions.",
 story: "Ziggy For Two is an iOS relationship app centered around a virtual companion that both partners raise together. Built using SwiftUI, WidgetKit and Firebase, the experience turns simple actions like feeding, playing and sharing moments into a fun way of maintaining connection across distance.",
-image: "./assets/images/ziggy-for-two.png"
+image: "./assets/images/ziggy-for-two.png",
+inProgress: true,
+link: ""
 }
 ,
     {
@@ -17,7 +19,8 @@ year: "2025",
 type: "AI Chrome Extension",
 blurb: "An AI companion that lives inside your browser and understands what you're viewing.",
 story: "Ziggy AI is a context-aware Chrome extension that helps users interact with web content without switching tabs. It can understand the current page, answer questions, summarize information and provide assistance directly inside the browsing experience through a playful virtual companion.",
-image: "./assets/images/ziggy-ai.png"
+image: "./assets/images/ziggy-ai.png",
+link: "https://chromewebstore.google.com/detail/omapeelmihfdaliinnmbgpficaliocfl"
 },
     {
 number: "03",
@@ -26,7 +29,8 @@ year: "2024",
 type: "Productivity Extension",
 blurb: "A distraction-free new tab experience built for focus, organization and daily productivity.",
 story: "Focus Tab transforms the default browser tab into a personal productivity hub. It combines task management, weather updates, focus tools, quick shortcuts and clean design into a single workspace that helps users start every browsing session with intention.",
-image: "./assets/images/focustab.png"
+image: "./assets/images/focustab.png",
+link: "https://chromewebstore.google.com/detail/leiofepjjglilgnegnnppaglgdnpieen"
 },
     {
   number: "04",
@@ -35,7 +39,8 @@ image: "./assets/images/focustab.png"
   type: "Client Website",
   blurb: "A professional financial advisory website designed to build trust and attract new clients.",
   story: "Designed and developed a modern website for CR Financial Advisors focused on clarity, credibility and lead generation. The platform presents financial services in a simple and approachable way while maintaining a professional and trustworthy brand presence.",
-  image: "./assets/images/crfinance.png"
+  image: "./assets/images/crfinance.png",
+  link: "https://crfinancialadvisors.com/"
 }
   ]
 };
@@ -180,26 +185,90 @@ function initPointer() {
 
 function openProject(index) {
   const project = portfolio.projects[index];
+  const live = !project.inProgress && !!project.link;
   const modal = $("#project-modal");
   $(".modal__content", modal).innerHTML = `
     <div class="modal__hero">
       <div class="title-row"><h2>${project.title}</h2></div>
       <p>${project.blurb}</p>
     </div>
-    <div class="modal__visual">
-  <img src="${project.image}" alt="${project.title}">
-</div>
+    <div class="modal__visual ${live ? "is-live" : "is-wip"}" role="button" tabindex="0"
+         aria-label="${live ? `Visit ${project.title} website` : `${project.title} is still in the making`}">
+      <img src="${project.image}" alt="${project.title}">
+      <div class="view-orb" aria-hidden="true">
+        <div class="view-orb__inner">
+          <span class="view-orb__label">${live ? "View" : "Soon"}</span>
+          <i class="view-orb__sub">${live ? "website ↗" : "in progress"}</i>
+        </div>
+      </div>
+    </div>
     <div class="modal__details">
       <p>${project.story}</p>
       <div class="modal__facts">
         <div><span>Product Name</span><span>${project.title}</span></div>
         <div><span>Discipline</span><span>${project.type}</span></div>
         <div><span>Year</span><span>${project.year}</span></div>
-        <div><span>Status</span><span>Live project</span></div>
+        <div><span>Status</span><span>${live ? "Live project" : "In the making"}</span></div>
       </div>
     </div>`;
+  initModalVisual(modal, project, live);
   modal.showModal();
   document.body.style.overflow = "hidden";
+}
+
+function initModalVisual(modal, project, live) {
+  const visual = $(".modal__visual", modal);
+  const orb = $(".view-orb", visual);
+  let mx = 0, my = 0, x = 0, y = 0, hovering = false, raf = 0;
+
+  const loop = () => {
+    if (!orb.isConnected) { raf = 0; return; }            // bail if modal content was replaced
+    const rect = visual.getBoundingClientRect();
+    const tx = mx - rect.left, ty = my - rect.top;
+    x += (tx - x) * 0.22;                                  // smooth trailing
+    y += (ty - y) * 0.22;
+    orb.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    raf = hovering ? requestAnimationFrame(loop) : 0;
+  };
+
+  visual.addEventListener("pointermove", event => { mx = event.clientX; my = event.clientY; });
+  visual.addEventListener("pointerenter", event => {
+    mx = event.clientX; my = event.clientY;
+    const rect = visual.getBoundingClientRect();
+    x = mx - rect.left; y = my - rect.top;                 // snap so it doesn't fly in
+    orb.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    hovering = true;
+    visual.classList.add("is-hover");
+    if (!raf) raf = requestAnimationFrame(loop);
+  });
+  visual.addEventListener("pointerleave", () => {
+    hovering = false;
+    visual.classList.remove("is-hover");
+  });
+
+  const activate = () => {
+    if (live) window.open(project.link, "_blank", "noopener");
+    else openWip(project);
+  };
+  visual.addEventListener("click", activate);
+  visual.addEventListener("keydown", event => {
+    if (["Enter", " "].includes(event.key)) { event.preventDefault(); activate(); }
+  });
+}
+
+function openWip(project) {
+  const wip = $("#wip-modal");
+  $(".wip__file", wip).textContent = `${project.title.toLowerCase().replace(/\s+/g, "-")}.swift`;
+  $(".wip__name", wip).textContent = project.title;
+  wip.showModal();
+}
+
+function initWip() {
+  const wip = $("#wip-modal");
+  if (!wip) return;
+  const close = () => wip.close();
+  $(".wip__close", wip).addEventListener("click", close);
+  wip.addEventListener("click", event => { if (event.target === wip) close(); });
 }
 
 function initProjects() {
@@ -245,6 +314,7 @@ initCounters();
 initParallax();
 initPointer();
 initProjects();
+initWip();
 initTilt();
 initMobileMenu();
 updateTime();
