@@ -52,7 +52,7 @@ function renderProjects() {
   $("#project-list").innerHTML = portfolio.projects.map((project, index) => `
     <article class="project reveal" tabindex="0" data-project="${index}" aria-label="Open ${project.title} case study">
       <span class="project__number">${project.number}</span>
-      <h2 class="project__title">${project.title}</h2>
+      <h2 class="project__title${project.title.length > 14 ? " is-long" : ""}">${project.title}</h2>
       <div class="project__meta">
         <p><span>Discipline</span>${project.type}</p>
         <p><span>Year</span>${project.year}</p>

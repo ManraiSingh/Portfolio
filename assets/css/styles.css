@@ -89,7 +89,8 @@ button { color: inherit; font: inherit; }
 .project > * { position: relative; z-index: 1; }
 .project:hover { color: var(--paper); border-color: transparent; }
 .project__number, .project__meta, .project__arrow { font: 10px/1.5 "DM Mono"; text-transform: uppercase; }
-.project__title { font-size: clamp(38px, 5.2vw, 80px); font-weight: 600; letter-spacing: -.065em; margin: 0; transition: transform .55s var(--ease); }
+.project__title { font-size: clamp(38px, 5.2vw, 80px); font-weight: 600; letter-spacing: -.065em; margin: 0; white-space: nowrap; transition: transform .55s var(--ease); }
+.project__title.is-long { font-size: clamp(30px, 3.4vw, 52px); }
 .project:hover .project__title { transform: translateX(18px); }
 .project__meta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .project__meta span { display: block; color: var(--muted); margin-bottom: 6px; }
@@ -270,7 +271,8 @@ button { color: inherit; font: inherit; }
   .section-head { grid-template-columns: 1fr; gap: 20px; }
   .section-head p:last-child { justify-self: start; }
   .project { grid-template-columns: 38px 1fr 26px; min-height: 125px; }
-  .project__title { font-size: 11vw; }
+  .project__title { font-size: 11vw; white-space: normal; }
+  .project__title.is-long { font-size: 8.5vw; }
   .project__meta, .project__preview { display: none; }
   .statement { padding-top: 80px; padding-bottom: 90px; }
   .about__grid { grid-template-columns: 1fr; }
