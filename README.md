@@ -15,7 +15,7 @@ A motion led portfolio that turns ideas into products you remember long after th
 
 ## 🧠 The work
 
-* **Ziggy For Two** &middot; an iOS companion that couples raise together, one little moment at a time
+* **Ziggy - Pet for Couples** &middot; an iOS companion that couples raise together, one little moment at a time
 * **Ziggy AI** &middot; a browser sidekick that actually understands what you are looking at
 * **Focus Tab** &middot; a calm, intentional new tab built for people who want to get things done
 * **CR Financial** &middot; a client website crafted around trust, clarity and real conversions

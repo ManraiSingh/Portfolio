@@ -2,11 +2,11 @@ const portfolio = {
   projects: [
     {
 number: "01",
-title: "ZIGGY FOR TWO",
+title: "ZIGGY - PET FOR COUPLES",
 year: "2026",
 type: "iOS Startup",
 blurb: "A shared digital pet and widget designed to help couples stay connected through everyday interactions.",
-story: "Ziggy For Two is an iOS relationship app centered around a virtual companion that both partners raise together. Built using SwiftUI, WidgetKit and Firebase, the experience turns simple actions like feeding, playing and sharing moments into a fun way of maintaining connection across distance.",
+story: "Ziggy - Pet for Couples is an iOS relationship app centered around a virtual companion that both partners raise together. Built using SwiftUI, WidgetKit and Firebase, the experience turns simple actions like feeding, playing and sharing moments into a fun way of maintaining connection across distance.",
 image: "./assets/images/ziggy-for-two.png",
 inProgress: true,
 link: ""
@@ -258,7 +258,7 @@ function initModalVisual(modal, project, live) {
 
 function openWip(project) {
   const wip = $("#wip-modal");
-  $(".wip__file", wip).textContent = `${project.title.toLowerCase().replace(/\s+/g, "-")}.swift`;
+  $(".wip__file", wip).textContent = `${project.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}.swift`;
   $(".wip__name", wip).textContent = project.title;
   wip.showModal();
 }
